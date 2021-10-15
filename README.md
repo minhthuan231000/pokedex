@@ -5,6 +5,7 @@
 <li>Show all pokekon</li>
 <li>Find Pokemon</li>
 <li>Show detail infomation Pokemon</li>
+<li>Add favorite pokemons - Comming soon</li>
 
 ## Tech Stack 🎇
 
