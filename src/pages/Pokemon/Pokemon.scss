@@ -1,0 +1,66 @@
+// overide css reactstrap
+.pokemon-info__container {
+    height: fit-content;
+    min-height: 100vh;
+    background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5)), url(../../assets/background3.jpg);
+    background-size: 50%;
+    color: #fff;
+    .pokemon-info__img {
+        &>img{
+            width: 100%;
+        }
+    }
+    .pokemon-info__box {
+        width: 100%;
+        height: fit-content;
+        background-color: #30a7d7;
+
+        padding: 28px;
+        font-size: 1.5rem;
+        border-radius: 8px;
+        margin: 4px 0;
+        .row-flex {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .pokemon-stats__box {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        height: fit-content;
+        background-color: rgb(141, 141, 141);
+
+        padding: 28px;
+        border-radius: 8px;
+        font-size: 1.5rem;
+        margin: 4px 0;
+    }
+}
+.spinner-border {
+    &.spinner {
+        height: 16rem;
+        width: 16rem;
+    }
+}
+.breadcrumb {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    .breadcrumb-item {
+        padding: 4px 12px;
+    }
+    .breadcrumb-item:hover {
+        cursor: pointer;
+        color: #007bff;
+    }
+    .breadcrumb-item.active {
+        color: #007bff;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        float: left;
+        padding-right: 0.5rem;
+        color: #fff;
+        content: var(--bs-breadcrumb-divider, "/");
+    }
+}

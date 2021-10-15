@@ -1,0 +1,29 @@
+$heightSize: 100px;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    background: -webkit-linear-gradient(150deg, #333 10%,aqua 30%, #333 50%, aqua 70%, #333 90%);
+    .header-brand {
+        display: flex;
+        width: auto;
+        height: $heightSize;
+        & > img {
+            width: auto;
+            padding: 12px 0;
+        }
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: $heightSize;
+            -webkit-text-stroke: 2px blue;
+            font-family: "Brush Script MT";
+            background-clip: text;
+            background: -webkit-linear-gradient(90deg, yellow 40%, #333 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    .header-search {
+        flex: 1;
+    }
+}
