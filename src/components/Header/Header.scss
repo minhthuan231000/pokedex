@@ -1,8 +1,14 @@
 $heightSize: 100px;
+$breakpoints: (
+    xs: 576px,
+    sm: 768px,
+    md: 992px,
+    lg: 1200px,
+);
 .header-container {
     display: flex;
     justify-content: space-between;
-    background: -webkit-linear-gradient(150deg, #333 10%,aqua 30%, #333 50%, aqua 70%, #333 90%);
+    background: -webkit-linear-gradient(150deg, #333 10%, aqua 30%, #333 50%, aqua 70%, #333 90%);
     .header-brand {
         display: flex;
         width: auto;
@@ -12,7 +18,7 @@ $heightSize: 100px;
             padding: 12px 0;
         }
         h1 {
-            font-size: 4rem;
+            font-size: 3em;
             font-weight: 800;
             line-height: $heightSize;
             -webkit-text-stroke: 2px blue;
@@ -21,6 +27,15 @@ $heightSize: 100px;
             background: -webkit-linear-gradient(90deg, yellow 40%, #333 70%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        @media (min-width: 376px) and (max-width: 768px) {
+            & > img {
+                width: auto;
+                padding: 12px 0;
+            }
+            h1 {
+                font-size: 2em;
+            }
         }
     }
     .header-search {

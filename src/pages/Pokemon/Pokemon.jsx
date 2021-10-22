@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import {
     Breadcrumb,
     BreadcrumbItem, Col, Container, Row, Spinner,
-    Progress
+    Progress,
+    Toast, ToastBody,
 } from 'reactstrap';
 import PokemonType from '../../components/PokemonType';
 import {
@@ -12,11 +13,13 @@ import {
 } from '../../constants/index';
 import './Pokemon.scss';
 
+
 function Pokemon(props) {
-    const { history, match } = props;
+    const { history, match, handleLikedPokemonClick } = props;
     const { params } = match;
     const { pokemonId, pokemonName } = params;
     const [pokemon, setPokemon] = useState(undefined)
+
     useEffect(() => {
         axios
             .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
@@ -26,13 +29,56 @@ function Pokemon(props) {
             })
             .catch((error) => setPokemon(false))
     }, [pokemonId, pokemonName])
+    const listFavoritePokemon = localStorage.getItem('listPkm');
+    const list = JSON.parse(listFavoritePokemon);
 
+    const [favorite, setFavorite] = useState(() => list.includes(pokemonName))
+
+    const [show, setShow] = useState(false);
     function renderPokemon() {
         const { id, abilities, height, weight, types, stats } = pokemon;
         const fullImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+        const handleLoveClick = () => {
+            setFavorite(!favorite)
+            setShow(true);
+            setTimeout(() => setShow(false), 5000);
+            if (!list.includes(pokemonName)) {
+                list.push(pokemonName)
+                handleLikedPokemonClick(pokemonName);
+            } else {
+                const findIndex = list.findIndex(item => item === pokemonName)
+                list.splice(findIndex, 1)
+            }
+            localStorage.setItem('listPkm', JSON.stringify(list))
+
+        }
+
         return (
             <>
-                <h1>{id}. {toFirstCharUppercase(pokemonName)}</h1>
+                <h1>
+                    {id}. {toFirstCharUppercase(pokemonName)}
+                    {
+                        favorite ? <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                            onClick={handleLoveClick}
+                            className="bi bi-heart-fill text-danger" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                        </svg> : <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                            onClick={handleLoveClick}
+                            className="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                        </svg>
+                    }
+                </h1>
+                <Toast isOpen={show}
+                    className={!list.includes(pokemonName) ? "text-light bg-danger" : "text-dark bg-info"}
+                    fade>
+                    <ToastBody tag="h5">
+                        {
+                            !list.includes(pokemonName) ? `Deleted ${pokemonName} from your list` : `Added ${pokemonName} to your list`
+                        }
+                    </ToastBody>
+                </Toast>
                 <Row>
                     <Col xs="auto">
                         <div className="pokemon-info__img">

@@ -13,6 +13,7 @@ Pokedex.propTypes = {
 };
 
 function Pokedex(props) {
+    
     const { history } = props;
     const [pokemonData, setPokemonData] = useState([])
     const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=6&offset=${0}`);
@@ -48,7 +49,7 @@ function Pokedex(props) {
     }, []);
 
     function getPokemonCard(pokemonId) {
-        const { id, name, sprites } = pokemonData[pokemonId];   
+        const { id, name, sprites } = pokemonData[pokemonId];
         return <PokemonCard
             key={pokemonId}
             idPokemon={id}

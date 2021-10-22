@@ -1,0 +1,14 @@
+.navbar-toggler {
+    display: none;
+}
+
+@media (min-width: 376px) and (max-width: 768px) {
+    .navbar-toggler {
+        display: block;
+    }
+    .nav {
+        &.nav {
+            display: none;
+        }
+    }
+}
