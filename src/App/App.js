@@ -8,44 +8,24 @@ import {
 import Pokedex from '../pages/Pokedex/Pokedex';
 import Pokemon from '../pages/Pokemon/Pokemon';
 import { useEffect } from 'react'
-import { connect } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
-import {
-  increaseCounter,
-  decreaseCounter,
-} from "../redux/Counter/counter.actions"
-const mapStateToProps = state => {
-  return {
-    count: state.counter.count,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    increaseCounter: () => dispatch(increaseCounter()),
-
-    decreaseCounter: () => dispatch(decreaseCounter()),
-  }
-}
-function App(props) {
+import { itemClick } from '../redux/AddList/addlist.action';
+function App() {
+  const products = useSelector(state => state.addlist.list);
+  const dispatch = useDispatch();
+  const dispatchItemClick = (item) => dispatch(itemClick(item))
   useEffect(() => {
     var pokemons = [];
     localStorage.setItem('listPkm', JSON.stringify(pokemons))
     console.log('render - app');
   }, [])
 
-  function handleLikedPokemonClick(data) {
-    alert(data)
-  }
+  const handleLikedPokemonClick = (data) => dispatchItemClick(data);
   return (
     <div>
-      <Header />
-      <div>Count: {props.count}</div>
-
-      <button onClick={() => props.increaseCounter()}>Increase Count</button>
-
-      <button onClick={() => props.decreaseCounter()}>Decrease Count</button>
-      <Router >
+      <Header listPokemons={products} />
+      <Router>
         <Switch>
           <Route
             exact path="/"
@@ -59,4 +39,4 @@ function App(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

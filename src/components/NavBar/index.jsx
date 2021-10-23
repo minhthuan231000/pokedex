@@ -8,6 +8,7 @@ NavBar.propTypes = {
 };
 
 function NavBar(props) {
+    const { listPokemons } = props;
     const [collapsed, setCollapsed] = useState(true);
     const [modal, setModal] = useState(false);
 
@@ -28,10 +29,9 @@ function NavBar(props) {
                     </ModalHeader>
                     <ModalBody>
                         <ListGroup>
-                            <ListGroupItem>1</ListGroupItem>
-                            <ListGroupItem>1</ListGroupItem>
-                            <ListGroupItem>1</ListGroupItem>
-                            <ListGroupItem>1</ListGroupItem>
+                            {listPokemons.map((item, index) => {
+                                return <ListGroupItem key={index}>{item}</ListGroupItem>
+                            })}
                         </ListGroup>
                     </ModalBody>
                     <ModalFooter>

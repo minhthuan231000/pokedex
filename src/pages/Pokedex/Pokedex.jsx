@@ -13,7 +13,7 @@ Pokedex.propTypes = {
 };
 
 function Pokedex(props) {
-    
+
     const { history } = props;
     const [pokemonData, setPokemonData] = useState([])
     const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=6&offset=${0}`);

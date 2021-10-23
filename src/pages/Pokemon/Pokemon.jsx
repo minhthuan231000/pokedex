@@ -43,9 +43,9 @@ function Pokemon(props) {
             setFavorite(!favorite)
             setShow(true);
             setTimeout(() => setShow(false), 5000);
+            handleLikedPokemonClick(pokemonName);
             if (!list.includes(pokemonName)) {
                 list.push(pokemonName)
-                handleLikedPokemonClick(pokemonName);
             } else {
                 const findIndex = list.findIndex(item => item === pokemonName)
                 list.splice(findIndex, 1)
