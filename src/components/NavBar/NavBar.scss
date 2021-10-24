@@ -1,7 +1,12 @@
-.navbar-toggler {
-    display: none;
+.nav-item--list {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: all 1s ease-in-out;
+    &:hover {
+        color: #fff;
+        cursor: pointer;
+    }
 }
-
 @media (min-width: 376px) and (max-width: 768px) {
     .navbar-toggler {
         display: block;

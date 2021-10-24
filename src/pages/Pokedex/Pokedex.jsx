@@ -16,7 +16,7 @@ function Pokedex(props) {
 
     const { history } = props;
     const [pokemonData, setPokemonData] = useState([])
-    const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=6&offset=${0}`);
+    const [loadMore, setLoadMore] = useState(`https://pokeapi.co/api/v2/pokemon?limit=12&offset=${0}`);
     const [filter, setFilter] = useState("");
     function handleSearchChange(e) {
         let search = e.target.value;

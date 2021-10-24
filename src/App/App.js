@@ -19,7 +19,7 @@ function App() {
     var pokemons = [];
     localStorage.setItem('listPkm', JSON.stringify(pokemons))
     console.log('render - app');
-  }, [])
+  }, []) 
 
   const handleLikedPokemonClick = (data) => dispatchItemClick(data);
   return (
