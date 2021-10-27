@@ -12,13 +12,27 @@ import {
     convertWeight, toFirstCharUppercase
 } from '../../constants/index';
 import './Pokemon.scss';
-
+import { itemClick } from '../../redux/AddList/addlist.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Pokemon(props) {
-    const { history, match, handleLikedPokemonClick } = props;
+    const { history, match } = props;
     const { params } = match;
     const { pokemonId, pokemonName } = params;
     const [pokemon, setPokemon] = useState(undefined)
+
+    //  redux - action
+    const listFavorite = useSelector(state => state.addlist.list);
+    const dispatch = useDispatch();
+    const dispatchItemClick = (item) => dispatch(itemClick(item))
+
+    const [favorite, setFavorite] = useState(() => listFavorite.includes(pokemonName))
+    const [show, setShow] = useState(false);
+    
+    useEffect(() => {
+        setFavorite(listFavorite.includes(pokemonName))
+        listFavorite.includes(pokemonName) && setShow(listFavorite.includes(pokemonName));
+    }, [listFavorite, pokemonName])
 
     useEffect(() => {
         axios
@@ -27,14 +41,12 @@ function Pokemon(props) {
                 const { data } = response;
                 setPokemon(data);
             })
-            .catch((error) => setPokemon(false))
+            .catch((error) => {
+                console.log("Get pokemon failure: ", error);
+                setPokemon(false)
+            })
     }, [pokemonId, pokemonName])
-    const listFavoritePokemon = localStorage.getItem('listPkm');
-    const list = JSON.parse(listFavoritePokemon);
 
-    const [favorite, setFavorite] = useState(() => list.includes(pokemonName))
-
-    const [show, setShow] = useState(false);
     function renderPokemon() {
         const { id, abilities, height, weight, types, stats } = pokemon;
         const fullImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
@@ -42,18 +54,9 @@ function Pokemon(props) {
         const handleLoveClick = () => {
             setFavorite(!favorite)
             setShow(true);
-            setTimeout(() => setShow(false), 5000);
-            handleLikedPokemonClick(pokemonName);
-            if (!list.includes(pokemonName)) {
-                list.push(pokemonName)
-            } else {
-                const findIndex = list.findIndex(item => item === pokemonName)
-                list.splice(findIndex, 1)
-            }
-            localStorage.setItem('listPkm', JSON.stringify(list))
-
+            setTimeout(() => setShow(false), 2000);
+            dispatchItemClick(pokemonName);
         }
-
         return (
             <>
                 <h1>
@@ -71,12 +74,10 @@ function Pokemon(props) {
                     }
                 </h1>
                 <Toast isOpen={show}
-                    className={!list.includes(pokemonName) ? "text-light bg-danger" : "text-dark bg-info"}
+                    className={!favorite ? "text-light bg-danger" : "text-dark bg-info"}
                     fade>
                     <ToastBody tag="h5">
-                        {
-                            !list.includes(pokemonName) ? `Deleted ${pokemonName} from your list` : `Added ${pokemonName} to your list`
-                        }
+                        {!favorite ? `Deleted ${pokemonName} from your list` : `Added ${pokemonName} to your list`}
                     </ToastBody>
                 </Toast>
                 <Row>

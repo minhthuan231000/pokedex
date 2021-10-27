@@ -1,29 +1,50 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, CardBody, CardImg, CardLink, CardTitle } from 'reactstrap';
+import {
+    Button, ListGroup, ListGroupItem,
+    Modal, ModalBody, ModalFooter, ModalHeader, Toast,
+} from 'reactstrap';
+import { toFirstCharUppercase } from '../../constants';
 import './PokeModal.scss';
+import { delClick } from '../../redux/AddList/addlist.action';
+import { useDispatch, useSelector } from 'react-redux';
+PokeModal.propTypes = {
+    open: PropTypes.bool,
+    toggler: PropTypes.bool,
+}
 
 function PokeModal(props) {
-    const { PokemonFound } = props;
+    const products = useSelector(state => state.addlist.list);
+    const dispatch = useDispatch();
+    // redux - action
+    const dispatchDelClick = (item) => dispatch(delClick(item))
+    const { open, toggle } = props;
+    function btnDelClick(e) {
+        dispatchDelClick(e.target.getAttribute("data"))
+    }
     return (
-        <CardLink
-            style={{ textDecoration: 'none' }}
-            href={`https://www.pokemon.com/us/pokedex/${PokemonFound.name}`}
-        >
-            <Card className="pokeball-modal">
-                <CardTitle>
+        <Modal isOpen={open} toggle={toggle} >
+            <ModalHeader>
+                List favorite pokemon
+                <Button color="danger" onClick={toggle}>X</Button>
+            </ModalHeader>
+            <ModalBody>
+                <ListGroup>
                     {
-                        PokemonFound.types.map((value, index) =>
-                            <span key={index}>{value.type.name}</span>
-                        )
+                        products.length === 0 ? <Toast className="text-dark bg-warning">Try clicking ♥ for some pokemon</Toast> :
+                            products.map((item, index) => {
+
+                                return <ListGroupItem key={index}>
+                                    {toFirstCharUppercase(item)}
+                                    <Button data={item} onClick={btnDelClick} color="warning" style={{ float: 'right' }}>X</Button>
+                                </ListGroupItem>
+                            })
                     }
-                </CardTitle>{/*  */}
-                <CardBody className="pokeball-body" >
-                    <CardImg
-                        src={PokemonFound.sprites.other['official-artwork'].front_default}
-                    />
-                </CardBody>
-            </Card>
-        </CardLink>
+                </ListGroup>
+            </ModalBody>
+            <ModalFooter>
+            </ModalFooter>
+        </Modal>
     );
 }
 

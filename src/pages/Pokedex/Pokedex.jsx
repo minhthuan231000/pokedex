@@ -8,9 +8,6 @@ import { toFirstCharUppercase } from '../../constants';
 import LoadMore from '../features/LoadMore';
 import SearchForm from '../features/SearchForm';
 import './PokeContainer.scss';
-Pokedex.propTypes = {
-
-};
 
 function Pokedex(props) {
 
@@ -23,6 +20,7 @@ function Pokedex(props) {
         search = search.toLowerCase();
         setFilter(search)
     }
+    
     async function getPokemon() {
         axios
             .get(loadMore)

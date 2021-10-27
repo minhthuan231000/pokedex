@@ -5,11 +5,13 @@
 <li>Show all pokekon</li>
 <li>Find Pokemon</li>
 <li>Show detail infomation Pokemon</li>
-<li>Add favorite pokemons - Comming soon</li>
+<li>Add favorite pokemons - Updated</li>
+<li>Del favorite pokemons - Updated</li>
 
 ## Tech Stack 🎇
 
 <li>Reactstrap + Bootstrap 4</li>
+<li>Manage state by Redux</li>
 <li>Axios</li>
 <li>Using history of React Router</li>
 <li>API from <a href="https://https://pokeapi.co/">Pokeapi</a></li>

@@ -1,44 +1,114 @@
 $heightSize: 100px;
-$breakpoints: (
-    xs: 576px,
-    sm: 768px,
-    md: 992px,
-    lg: 1200px,
-);
+$mobile: 320px;
+$tablet: 960px;
+$desktop: 1280px;
+@mixin respond-to($media) {
+    @if $media == small-mobile {
+        @media (max-width: $mobile) {
+            @content;
+        }
+    } @else if $media == mobile {
+        @media (min-width: $mobile) {
+            @content;
+        }
+    } @else if $media == tablet {
+        @media (min-width: $tablet) and (max-width: $desktop) {
+            @content;
+        }
+    } @else if $media == desktop {
+        @media (min-width: $desktop) {
+            @content;
+        }
+    }
+}
+@mixin nav-item--pokemon {
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    transition: all 1s ease-in-out;
+    &:hover {
+        color: #fff;
+        cursor: pointer;
+    }
+}
 .header-container {
     display: flex;
     justify-content: space-between;
     background: -webkit-linear-gradient(150deg, #333 10%, aqua 30%, #333 50%, aqua 70%, #333 90%);
     .header-brand {
         display: flex;
-        width: auto;
+        justify-content: space-between;
         height: $heightSize;
+        @include respond-to(mobile) {
+            width: 60px;
+            height: auto;
+        }
         & > img {
-            width: auto;
-            padding: 12px 0;
+            @include respond-to(mobile) {
+                width: 60px;
+                height: 60px;
+            }
+            @include respond-to(tablet) {
+                width: 160px;
+            }
+            @include respond-to(desktop) {
+                width: 160px;
+            }
         }
         h1 {
-            font-size: 3em;
+            width: 100%;
+            font-size: 3rem;
             font-weight: 800;
-            line-height: $heightSize;
             -webkit-text-stroke: 2px blue;
             font-family: "Brush Script MT";
             background-clip: text;
             background: -webkit-linear-gradient(90deg, yellow 40%, #333 70%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        @media (min-width: 376px) and (max-width: 768px) {
-            & > img {
+            @include respond-to(mobile) {
                 width: auto;
-                padding: 12px 0;
-            }
-            h1 {
-                font-size: 2em;
+                height: 100%;
             }
         }
     }
-    .header-search {
-        flex: 1;
+    .nav-item--list {
+        @include nav-item--pokemon;
+        @include respond-to(mobile) {
+            display: none;
+        }
+        @include respond-to(tablet) {
+            display: flex;
+        }
+        @include respond-to(desktop) {
+            display: flex;
+        }
+    }
+    .navbar-toggler {
+        @include respond-to(mobile) {
+            border-color: black !important;
+            border-width: 2px;
+        }
+        @include respond-to(tablet) {
+            display: none;
+        }
+        @include respond-to(desktop) {
+            display: none;
+        }
+    }
+    .navbar-collapse {
+        & > .navbar-nav {
+            background-color: rgba(255, 255, 255, 0.329);
+            border-radius: 12px;
+            @include respond-to(tablet) {
+                display: none;
+            }
+            @include respond-to(desktop) {
+                display: none;
+            }
+            & > .nav-item {
+                @include nav-item--pokemon;
+            }
+        }
     }
 }
