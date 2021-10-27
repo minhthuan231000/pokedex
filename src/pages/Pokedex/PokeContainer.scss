@@ -21,6 +21,9 @@ $desktop: 1280px;
         }
     }
 }
+.pokedex-container{
+    margin: var(--height-header) 0; 
+}
 .pokemon-container {
     display: flex;
     flex-flow: column wrap;

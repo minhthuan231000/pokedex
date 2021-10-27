@@ -1,5 +1,6 @@
 // overide css reactstrap
 .pokemon-info__container {
+    margin-top: calc(var(--height-header) - 10px);
     height: fit-content;
     min-height: 100vh;
     background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5)), url(../../assets/background3.jpg);

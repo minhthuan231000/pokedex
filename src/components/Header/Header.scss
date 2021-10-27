@@ -34,12 +34,17 @@ $desktop: 1280px;
 }
 .header-container {
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: auto;
     justify-content: space-between;
     background: -webkit-linear-gradient(150deg, #333 10%, aqua 30%, #333 50%, aqua 70%, #333 90%);
     .header-brand {
         display: flex;
         justify-content: space-between;
-        height: $heightSize;
         @include respond-to(mobile) {
             width: 60px;
             height: auto;
