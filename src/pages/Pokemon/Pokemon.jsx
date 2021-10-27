@@ -35,6 +35,7 @@ function Pokemon(props) {
     }, [listFavorite, pokemonName])
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         axios
             .get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
             .then(async response => {
