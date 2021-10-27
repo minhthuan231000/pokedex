@@ -58,7 +58,7 @@ function Pokedex(props) {
         />
     }
     return (
-        <Container>
+        <Container className="pokedex-container">
             <SearchForm
                 handleSearchChange={handleSearchChange}
             />
