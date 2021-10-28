@@ -20,7 +20,6 @@ function Pokemon(props) {
     const { params } = match;
     const { pokemonId, pokemonName } = params;
     const [pokemon, setPokemon] = useState(undefined)
-
     //  redux - action
     const listFavorite = useSelector(state => state.addlist.list);
     const dispatch = useDispatch();
@@ -28,7 +27,7 @@ function Pokemon(props) {
 
     const [favorite, setFavorite] = useState(() => listFavorite.includes(pokemonName))
     const [show, setShow] = useState(false);
-    
+
     useEffect(() => {
         setFavorite(listFavorite.includes(pokemonName))
         listFavorite.includes(pokemonName) && setShow(listFavorite.includes(pokemonName));
@@ -49,6 +48,7 @@ function Pokemon(props) {
     }, [pokemonId, pokemonName])
 
     function renderPokemon() {
+
         const { id, abilities, height, weight, types, stats } = pokemon;
         const fullImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 
@@ -83,12 +83,12 @@ function Pokemon(props) {
                 </Toast>
                 <Row>
                     <Col xs="auto">
-                        <div className="pokemon-info__img">
+                        <div className="pokemon-info__img fade_in">
                             <img src={fullImageUrl} alt="" />
                         </div>
                     </Col>
                     <Col >
-                        <Row className="pokemon-info__box">
+                        <Row className="pokemon-info__box fade_right">
                             <Row className="row-flex">
                                 <Col xs="auto" style={{ display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
                                     <Row>Height:</Row>
@@ -123,7 +123,7 @@ function Pokemon(props) {
                                 </Col>
                             </Row>
                         </Row>
-                        <Row className="pokemon-stats__box">
+                        <Row className="pokemon-stats__box fade_left">
                             STATS:
                             {
                                 stats.map((statsInfo, index) => {

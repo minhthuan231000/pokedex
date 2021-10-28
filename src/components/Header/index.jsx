@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
 import Logo from '../../assets/pokedex-logo.png';
-import './Header.scss';
-import {
-    Navbar, NavbarBrand, Collapse, NavbarToggler, Nav, NavItem
-} from 'reactstrap';
 import PokeModal from '../PokeModal';
+import './Header.scss';
 
-function Header(props) {
+function Header() {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed);
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
     return (
         <div className="header-container">
             <div className="container">

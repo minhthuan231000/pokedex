@@ -41,7 +41,15 @@ $desktop: 1280px;
     z-index: 100;
     height: auto;
     justify-content: space-between;
-    background: -webkit-linear-gradient(150deg, #333 10%, aqua 30%, #333 50%, aqua 70%, #333 90%);
+    @include respond-to(mobile) {
+        background: -webkit-linear-gradient(150deg, #333 20%, aqua 40%, #333 90%);
+    }
+    @include respond-to(tablet) {
+        background: -webkit-linear-gradient(150deg, transparent 10%, aqua 30%, #333 50%, aqua 70%, transparent 90%);
+    }
+    @include respond-to(desktop) {
+        background: -webkit-linear-gradient(150deg, transparent 10%, aqua 30%, #333 50%, aqua 70%, transparent 90%);
+    }
     .header-brand {
         display: flex;
         justify-content: space-between;
@@ -91,8 +99,11 @@ $desktop: 1280px;
     }
     .navbar-toggler {
         @include respond-to(mobile) {
-            border-color: black !important;
+            border-color: white !important;
             border-width: 2px;
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            }
         }
         @include respond-to(tablet) {
             display: none;

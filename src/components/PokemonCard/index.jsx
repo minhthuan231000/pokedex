@@ -14,11 +14,10 @@ function PokemonCard(props) {
     const {
         namePokemon,
         spritesPokemon, // URL image
-
         handleCardClick
     } = props;
     return (
-        <Card className="card-pokeball" onClick={handleCardClick}>
+        <Card className="card-pokeball fade_in" onClick={handleCardClick}>
             <div className="pokeball text-light" data-foo={namePokemon}>
             </div>
             <div className="pokeball__button">

@@ -44,6 +44,7 @@ function Pokedex(props) {
     }
     useEffect(() => {
         getPokemon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function getPokemonCard(pokemonId) {
