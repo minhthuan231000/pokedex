@@ -1,5 +1,6 @@
 import './App.scss';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +24,7 @@ function App() {
             render={(props) => <Pokemon {...props} />} />
         </Switch>
       </Router>
+      <Footer />
     </Provider>
   );
 }
