@@ -18,9 +18,15 @@ function Pokedex(props) {
     function handleSearchChange(e) {
         let search = e.target.value;
         search = search.toLowerCase();
-        setFilter(search)
+        setFilter(search);
+        scrollToTop();
     }
-
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
     async function getPokemon() {
         axios
             .get(loadMore)
