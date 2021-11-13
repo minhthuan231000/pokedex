@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Pokedex from '../pages/Pokedex/Pokedex';
 import Pokemon from '../pages/Pokemon/Pokemon';
+import ScrollToTop from '../pages/features/ScrollToTop';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 function App() {
@@ -24,6 +25,7 @@ function App() {
             render={(props) => <Pokemon {...props} />} />
         </Switch>
       </Router>
+      <ScrollToTop />
       <Footer />
     </Provider>
   );

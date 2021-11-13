@@ -4,14 +4,14 @@ import { Col, Row } from 'reactstrap';
 
 function Footer(props) {
     return (
-        <footer className="bg-dark container-fluid text-white-50">
+        <footer className="bg-dark container-fluid text-white-50 footer">
             <div className="container">
                 <Row className="py-2 py-sm-3 py-md-4" style={{fontSize: '1.6rem', fontFamily: 'fantasy'}}>
-                    <Col>
+                    <Col xs={12} md={4} lg={4}>
                         <div>Designer by <span className="text-uppercase">kr. thuan</span></div>
                         <div>About: Frontend Dev Web</div>
                     </Col>
-                    <Col>
+                    <Col xs={6} md={4} lg={4}>
                         <div>Contact me:</div>
                         <a href="https://www.facebook.com/nguyenminh.thuan.14224/" target="_blank" rel="noreferrer" className="social-1">
                             <span className="offscreen">facebook</span>
@@ -23,7 +23,7 @@ function Footer(props) {
                             <span className="offscreen">github</span>
                         </a>
                     </Col>
-                    <Col>
+                    <Col xs={6} md={4} lg={4}>
                         <span>API by</span>
                         <a api='api' href="https://pokeapi.co/">
                         </a>

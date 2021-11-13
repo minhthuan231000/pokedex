@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {
-    Container
+    Container,
 } from 'reactstrap';
 import PokemonCard from '../../components/PokemonCard';
 import { toFirstCharUppercase } from '../../constants';
@@ -20,14 +20,14 @@ function Pokedex(props) {
         search = search.toLowerCase();
         setFilter(search)
     }
-    
+
     async function getPokemon() {
         axios
             .get(loadMore)
             .then(async response => {
                 const { data } = response;
                 const { results, next } = data;
-                setLoadMore(next)
+                setLoadMore(next);
                 async function createPokemonObject(results) {
                     results.forEach(async pokemon => {
                         await axios
@@ -44,7 +44,7 @@ function Pokedex(props) {
     }
     useEffect(() => {
         getPokemon();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function getPokemonCard(pokemonId) {
@@ -71,13 +71,14 @@ function Pokedex(props) {
                                 pokemonData[pokemonId].name.includes(filter) &&
                                 getPokemonCard(pokemonId)
                         )}
+                        <div className="empty"></div>
                         <LoadMore
                             handleClickLoadMore={() => getPokemon()}
                         />
                     </div>
                 ) : <h3>Loading</h3>
-                }
 
+                }
             </div>
         </Container>
     );

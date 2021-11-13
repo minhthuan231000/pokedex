@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-    Button,
     Input, InputGroup,
     InputGroupAddon
 } from 'reactstrap';
@@ -16,11 +15,10 @@ function SearchForm(props) {
     const { handleSearchChange } = props;
     return (
         <InputGroup>
-            <InputGroupAddon addonType="prepend" >
-                <Button style={{ borderRadius: '30px 0 0 30px' }} color="info">Search</Button>
+            <InputGroupAddon addonType="prepend">
+                Search
             </InputGroupAddon>
             <Input
-                style={{ borderRadius: '0 30px 30px 0' }}
                 autoFocus
                 placeholder="Try with a character ... ?"
                 onChange={handleSearchChange}

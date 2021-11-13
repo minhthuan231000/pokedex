@@ -11,6 +11,7 @@ LoadMore.defaaultProps = {
 
 function LoadMore(props) {
     const { handleClickLoadMore } = props;
+    
     return (
         <Button color="info" className="btnLoadMore" onClick={handleClickLoadMore}>Load More</Button>
     );

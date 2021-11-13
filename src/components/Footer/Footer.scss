@@ -1,9 +1,12 @@
-@mixin hover{
-    &:hover{
+@mixin hover {
+    &:hover {
         opacity: 0.5;
     }
 }
-.col{
+.footer {
+    position: relative;
+}
+.col-12, .col-md-4, .col-lg-4 {
     & a {
         display: inline-block;
         height: 34px;
