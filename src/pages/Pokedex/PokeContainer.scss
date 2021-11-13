@@ -157,6 +157,7 @@ $desktop: 1280px;
             z-index: 100;
             @include respond-to(mobile) {
                 bottom: -50px;
+                width: 50%;
                 font-size: 1rem;
                 -webkit-text-stroke: 1px #fff;
                 letter-spacing: 4px;
