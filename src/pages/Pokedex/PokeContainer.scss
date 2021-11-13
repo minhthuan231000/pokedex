@@ -154,7 +154,7 @@ $desktop: 1280px;
             letter-spacing: 5px;
 
             border-radius: 16px;
-            z-index: 100;
+            z-index: 88;
             @include respond-to(mobile) {
                 bottom: -50px;
                 width: 50%;
