@@ -1,3 +1,26 @@
+$mobile: 320px;
+$tablet: 960px;
+$desktop: 1280px;
+
+@mixin respond-to($media) {
+    @if $media == small-mobile {
+        @media (max-width: $mobile) {
+            @content;
+        }
+    } @else if $media == mobile {
+        @media (min-width: $mobile) {
+            @content;
+        }
+    } @else if $media == tablet {
+        @media (min-width: $tablet) {
+            @content;
+        }
+    } @else if $media == desktop {
+        @media (min-width: $desktop) {
+            @content;
+        }
+    }
+}
 // overide css reactstrap
 .pokemon-info__container {
     margin-top: calc(var(--height-header) - 10px);
@@ -6,6 +29,69 @@
     background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5)), url(../../assets/background3.jpg);
     background-size: 50%;
     color: #fff;
+    font-weight: 700;
+    .name-pc {
+        @include respond-to(mobile) {
+            display: block;
+            font-size: 2rem;
+        }
+        @include respond-to(tablet) {
+            @include respond-to(desktop) {
+                display: none;
+            }
+        }
+        .bi-heart-fill {
+            @include respond-to(mobile) {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    }
+    .navbar-control {
+        .name-pc {
+            @include respond-to(mobile) {
+                display: none;
+            }
+            @include respond-to(tablet) {
+                @include respond-to(desktop) {
+                    display: block;
+                }
+            }
+        }
+        .col-md-4,
+        .col-lg-4 {
+            @include respond-to(tablet) {
+                @include respond-to(desktop) {
+                    font-size: 2rem;
+                }
+            }
+
+            .btn {
+                &.btn {
+                    @include respond-to(tablet) {
+                        @include respond-to(desktop) {
+                            font-weight: 700;
+                        }
+                    }
+                }
+                &.btn:hover {
+                    background-color: #007bff;
+                }
+            }
+            .bi-heart-fill {
+                @include respond-to(mobile) {
+                    width: 16px;
+                    height: 16px;
+                }
+                @include respond-to(tablet) {
+                    @include respond-to(desktop) {
+                        width: 36px;
+                        height: 36px;
+                    }
+                }
+            }
+        }
+    }
     .pokemon-info__img {
         & > img {
             width: 100%;
@@ -36,6 +122,9 @@
         border-radius: 8px;
         font-size: 1.5rem;
         margin: 4px 0;
+        .progress {
+            --bs-gutter-x: 0rem;
+        }
     }
 }
 .spinner-border {
